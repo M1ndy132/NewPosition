@@ -3,14 +3,18 @@ import random
 keywords = ["Boost", "Drain"]
 
 playing = False
+loop_count = 0
+current_position = 0
 
 def confirm():
-    global playing
+    global playing, loop_count
     Confirmation = input("Would you like to continue playing? (y/n) ").strip().lower()
     if Confirmation.startswith("y"):
         playing = True
+        loop_count += 1
     else:
         print("Thanks for playing!")
+        loop_count = 0
         playing = False
 
 
@@ -22,25 +26,49 @@ else:
 
 while playing == True:
     keyword = random.choice(keywords)
-    position = random.randint(1, 10)
+    starting_position = random.randint(1, 10)
     movement_int = random.randint(1, 10)
+    
 
-    print(f"You are at position {position}")
-    print(f"The energy cell was hit with a {keyword} {movement_int}")
-    print("Where do you need to be to collect it?")
+    if loop_count < 1:
+        print(f"You are at position {starting_position}")
+        print(f"The energy cell was hit with a {keyword} {movement_int}")
+        print("Where do you need to be to collect it?")
 
-    user_answer = int(input("Position? "))
+        user_answer = int(input("Position? "))
 
-    if keyword == "Boost":
-        correct_answer = position + movement_int
-    elif keyword == "Drain":
-        correct_answer = position - movement_int
+        if keyword == "Boost":
+            correct_answer = starting_position + movement_int
+        elif keyword == "Drain":
+            correct_answer = starting_position - movement_int
 
-    if user_answer == correct_answer:   #type: ignore
-        print("You got it!")
-        confirm()
+        if user_answer == correct_answer:   #type: ignore
+            print("You got it!")
+            current_position = user_answer
+            confirm()
+        else:
+            print(f"You missed it. The correct position was {correct_answer}") #type: ignore
+            current_position = user_answer
+            confirm()
     else:
-        print(f"You missed it. The correct position was {correct_answer}") #type: ignore
-        confirm()
+        print(f"You are at position {current_position}")    
+        print(f"The energy cell was hit with a {keyword} {movement_int}")
+        print("Where do you need to be to collect it?")
+
+        user_answer = int(input("Position? "))
+
+        if keyword == "Boost":
+            correct_answer = current_position + movement_int
+        elif keyword == "Drain":
+            correct_answer = current_position - movement_int
+
+        if user_answer == correct_answer:   #type: ignore
+            print("You got it!")
+            current_position = user_answer
+            confirm()
+        else:
+            print(f"You missed it. The correct position was {correct_answer}") #type: ignore
+            current_position = user_answer
+            confirm()
 
     
