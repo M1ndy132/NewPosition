@@ -35,9 +35,9 @@ while playing == True:
     else:
         position = user_answer                                                      #type: ignore
         
-    print(f"You are at position {position}")
+    print(f"\nYou are at position {position}")
     print(f"The energy cell was hit with a {keyword} {movement_int}")
-    print("Where do you need to be to collect it?")
+    print("\nWhere do you need to be to collect it?")
 
     user_answer = int(input("Position? "))
 
