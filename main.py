@@ -99,4 +99,5 @@ while playing == True:
         reactor_integrity -= 1
         if reactor_integrity == 0:
             print("\nThe reactor has failed. It's over for us all.")
+            playing = False
     
