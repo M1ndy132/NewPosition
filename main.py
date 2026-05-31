@@ -32,7 +32,7 @@ def confirm():
             print(level.story_text)
 
 def next_level():
-    global current_level, playing, keywords, loop_count, cells_collected, cells_to_be_collected, level, reactor_integrity
+    global current_level, playing, keywords, loop_count, cells_collected, cells_to_be_collected, level, reactor_integrity, amplify_count
     current_level += 1
     if current_level >= len(levels):
         print("\nYou've stabalized all the sectors!")
