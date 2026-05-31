@@ -27,6 +27,8 @@ def confirm():
             playing = False
         else:
             playing = True
+            print(level.section_title)
+            print(level.story_text)
 
 def next_level():
     global current_level, playing, keywords, loop_count, cells_collected, cells_to_be_collected, level, reactor_integrity
@@ -44,10 +46,8 @@ def next_level():
         return True
 
 
-print("\nDr. Infinity has disappeared.")
-print("Without him, the reactor has become unstable.")
-print("Energy cells have been scattered across the powerplant.")
-print("If we don't get them back soon and stabilize the reactor, The world we know may end.")
+print(level.section_title)
+print(level.story_text)
 
 Confirmation = input("\nWill you help us collect the energy cells? (y/n) ").strip().lower()
 if Confirmation.startswith("y"):
@@ -59,7 +59,6 @@ else:
 
 while playing == True:
     keyword = random.choice(keywords)
-    starting_position = random.randint(1, 10)
     movement_int = random.randint(1, 10)
     
 
