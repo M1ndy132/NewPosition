@@ -8,6 +8,7 @@ playing = False
 loop_count = 0
 
 amplify_count = 0
+dissipate_count = 0
 
 cells_collected = 0
 
@@ -32,7 +33,7 @@ def confirm():
             print(level.story_text)
 
 def next_level():
-    global current_level, playing, keywords, loop_count, cells_collected, cells_to_be_collected, level, reactor_integrity, amplify_count
+    global current_level, playing, keywords, loop_count, cells_collected, cells_to_be_collected, level, reactor_integrity, amplify_count, dissipate_count
     current_level += 1
     if current_level >= len(levels):
         print("\nYou've stabalized all the sectors!")
@@ -44,6 +45,7 @@ def next_level():
         loop_count = 0
         cells_collected = 0
         amplify_count = 0
+        dissipate_count = 0
         reactor_integrity = 3
         return True
 
@@ -64,6 +66,10 @@ while playing == True:
         copy_keywords = keywords.copy()
         copy_keywords.remove("Amplify")
         keyword = random.choice(copy_keywords)
+    elif dissipate_count >= 3:
+        copy_keywords = keywords.copy()
+        copy_keywords.remove("Dissipate")
+        keyword = random.choice(copy_keywords)
     else:
         keyword = random.choice(keywords)
 
@@ -73,6 +79,7 @@ while playing == True:
         amplify_count += 1
         movement_int = random.choice(movement_int_limited_range)
     elif keyword == "Dissipate":
+        dissipate_count += 1
         movement_int = random.choice(movement_int_limited_range)
     else:
         movement_int = random.randint(1, 10)
