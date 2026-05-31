@@ -1,24 +1,47 @@
 import random
+import level1, level2
 
-keywords = ["Boost", "Drain", "Amplify", "Dissipate"]
+levels = [level1, level2]
+current_level = 0
 
 playing = False
 loop_count = 0
-current_position = 0
+
+
 cells_collected = 0
-cells_to_be_collected = 10
+
+level = levels[current_level]
+cells_to_be_collected = level.cells_to_be_collected
+keywords = level.keywords
+
 reactor_integrity = 3
 
 def confirm():
     global playing, loop_count
-    Confirmation = input("Gonna get the next one? (y/n) ").strip().lower()
-    if Confirmation.startswith("y"):
-        playing = True
-        loop_count += 1
-    else:
-        print("Thanks for for your help!")
-        loop_count = 0
+    if not next_level():
         playing = False
+    else:
+        Confirmation = input("Would you like to proceed to the next sector? (y/n) ").strip().lower()
+        if Confirmation.startswith("n"):
+            print("Rest well.")
+            playing = False
+        else:
+            playing = True
+
+def next_level():
+    global current_level, playing, keywords, loop_count, cells_collected, cells_to_be_collected, level, reactor_integrity
+    current_level += 1
+    if current_level >= len(levels):
+        print("\nYou've stabalized all the sectors!")
+        return False
+    else:
+        level = levels[current_level]
+        keywords = level.keywords
+        cells_to_be_collected = level.cells_to_be_collected
+        loop_count = 0
+        cells_collected = 0
+        reactor_integrity = 3
+        return True
 
 
 print("\nDr. Infinity has disappeared.")
@@ -64,20 +87,16 @@ while playing == True:
         correct_answer = round(position/movement_int, 1)
 
     if user_answer == correct_answer:   #type: ignore
-        print("You got it!")
+        print("\nYou got it!")
+        loop_count += 1
         cells_collected += 1
         if cells_collected == cells_to_be_collected:
-            print("You've stabalized the reactor. A job well done.")
-            break
-        else:
+            print("\nYou've stabalized this sector of the reactor. A job well done.")
             confirm()
     else:
-        print(f"You missed it. The correct position was {correct_answer}") #type: ignore
+        print(f"\nYou missed it. The correct position was {correct_answer}") #type: ignore
+        loop_count += 1
         reactor_integrity -= 1
         if reactor_integrity == 0:
-            print("The reactor has failed. It's over for us all.")
-            break
-        else:
-            confirm()
-    
+            print("\nThe reactor has failed. It's over for us all.")
     
