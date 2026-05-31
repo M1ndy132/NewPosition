@@ -1,6 +1,6 @@
 import random
 
-keywords = ["Boost", "Drain"]
+keywords = ["Boost", "Drain", "Amplify", "Dissipate"]
 
 playing = False
 loop_count = 0
@@ -39,12 +39,16 @@ while playing == True:
     print(f"The energy cell was hit with a {keyword} {movement_int}")
     print("\nWhere do you need to be to collect it?")
 
-    user_answer = int(input("Position? "))
+    user_answer = float(input("Position? "))
 
     if keyword == "Boost":
         correct_answer = position + movement_int
     elif keyword == "Drain":
         correct_answer = position - movement_int
+    elif keyword == "Amplify":
+        correct_answer = position * movement_int
+    elif keyword == "Dissipate":
+        correct_answer = round(position/movement_int, 1)
 
     if user_answer == correct_answer:   #type: ignore
         print("You got it!")
