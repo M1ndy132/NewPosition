@@ -1,12 +1,13 @@
 import random
-import level1, level2
+import level1, level2, level3, level4
 
-levels = [level1, level2]
+levels = [level1, level2, level3, level4]
 current_level = 0
 
 playing = False
 loop_count = 0
 
+amplify_count = 0
 
 cells_collected = 0
 
@@ -27,7 +28,7 @@ def confirm():
             playing = False
         else:
             playing = True
-            print(level.section_title)
+            print(f"\n{level.section_title}")
             print(level.story_text)
 
 def next_level():
@@ -42,6 +43,7 @@ def next_level():
         cells_to_be_collected = level.cells_to_be_collected
         loop_count = 0
         cells_collected = 0
+        amplify_count = 0
         reactor_integrity = 3
         return True
 
@@ -58,8 +60,22 @@ else:
     playing = False
 
 while playing == True:
-    keyword = random.choice(keywords)
-    movement_int = random.randint(1, 10)
+    if amplify_count >= 3:
+        copy_keywords = keywords.copy()
+        copy_keywords.remove("Amplify")
+        keyword = random.choice(copy_keywords)
+    else:
+        keyword = random.choice(keywords)
+
+    movement_int_limited_range = [1, 2, 3, 4, 5, 10]
+    
+    if keyword == "Amplify":
+        amplify_count += 1
+        movement_int = random.choice(movement_int_limited_range)
+    elif keyword == "Dissipate":
+        movement_int = random.choice(movement_int_limited_range)
+    else:
+        movement_int = random.randint(1, 10)
     
 
     if loop_count < 1:
