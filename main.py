@@ -62,16 +62,15 @@ else:
     playing = False
 
 while playing == True:
-    if amplify_count >= 3:
-        copy_keywords = keywords.copy()
-        copy_keywords.remove("Amplify")
-        keyword = random.choice(copy_keywords)
-    elif dissipate_count >= 3:
-        copy_keywords = keywords.copy()
-        copy_keywords.remove("Dissipate")
-        keyword = random.choice(copy_keywords)
-    else:
-        keyword = random.choice(keywords)
+    available_keywords = keywords.copy()
+
+    if amplify_count >= 3 and "Amplify" in available_keywords:
+        available_keywords.remove("Amplify")
+
+    if dissipate_count >= 3 and "Dissipate" in available_keywords:
+        available_keywords.remove("Dissipate")
+
+    keyword = random.choice(available_keywords)
 
     movement_int_limited_range = [1, 2, 3, 4, 5, 10]
     
