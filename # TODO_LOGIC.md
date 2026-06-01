@@ -1,4 +1,5 @@
 # TODO_LOGIC.md
+
 # Reactor Math Game — Core Logic Completion Checklist
 
 This file defines the "logic finish line" for the game.
@@ -7,17 +8,19 @@ When all boxes are checked, the core system is considered complete.
 ---
 
 ## 🧠 Core Game Loop
-- [ ] Position generates correctly or carries over correctly
-- [ ] Keyword is selected without breaking rules
-- [ ] Movement value is generated correctly
-- [ ] Player input is requested each round
-- [ ] Correct answer is calculated accurately
-- [ ] Game state updates correctly after each round
-- [ ] Loop runs continuously without bugs or resets
+
+- [X] Position generates correctly or carries over correctly
+- [X] Keyword is selected without breaking rules
+- [X] Movement value is generated correctly
+- [X] Player input is requested each round
+- [X] Correct answer is calculated accurately
+- [X] Game state updates correctly after each round
+- [X] Loop runs continuously without bugs or resets
 
 ---
 
 ## ⚙️ Game State Stability
+
 - [ ] Position always reflects last correct result
 - [ ] Cells collected increments only on success
 - [ ] Reactor integrity decreases only on failure
@@ -27,6 +30,7 @@ When all boxes are checked, the core system is considered complete.
 ---
 
 ## 🔢 Math System
+
 - [ ] Boost = position + n
 - [ ] Drain = position - n
 - [ ] Amplify = position * n (controlled difficulty)
@@ -37,6 +41,7 @@ When all boxes are checked, the core system is considered complete.
 ---
 
 ## 🎮 Keyword System
+
 - [ ] All keywords behave consistently
 - [ ] No keyword breaks game balance
 - [ ] No keyword dominates gameplay unfairly
@@ -46,6 +51,7 @@ When all boxes are checked, the core system is considered complete.
 ---
 
 ## 📊 Level System
+
 - [ ] Levels defined in separate files/modules
 - [ ] Each level defines:
   - [ ] keywords
@@ -58,6 +64,7 @@ When all boxes are checked, the core system is considered complete.
 ---
 
 ## 💀 Win / Lose Conditions
+
 - [ ] Win condition triggers correctly (cells collected)
 - [ ] Lose condition triggers correctly (reactor integrity = 0)
 - [ ] Game stops immediately on win or loss
@@ -66,6 +73,7 @@ When all boxes are checked, the core system is considered complete.
 ---
 
 ## 🔁 Session Flow
+
 - [ ] Start prompt works correctly
 - [ ] Game loop runs cleanly
 - [ ] Level transition prompt works
@@ -79,6 +87,7 @@ When all boxes are checked, the core system is considered complete.
 Core logic is considered COMPLETE when ALL checkboxes above are ticked.
 
 At that point:
+
 - Game is stable
 - Systems are reusable
 - Expansion (graphics, sounds, algebra mode) can be added safely

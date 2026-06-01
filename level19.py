@@ -1,9 +1,9 @@
-section_title = " "
+section_title = "Sector Omega (Collapse)"
 
 story_text = " "
 
-Question_type = "Unknown"
+Question_types = ["Unknown", "Regular"]
 
 keywords = ["Boost", "Drain", "Amplify", "Dissipate"]
 cells_to_be_collected = 30
-reactor_integrity = 6
+reactor_integrity = 4

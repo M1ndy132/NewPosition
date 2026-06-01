@@ -4,7 +4,7 @@ import questionfile as qf
 
 levels = [level1, level2, level3, level4, level5, level6, level7, level8, level9, level10,
           level11, level12, level13, level14, level15, level16, level17, level18, level19, level20]
-current_level = 10
+current_level = 0
 
 playing = False
 question_count = 0
@@ -17,7 +17,7 @@ cells_collected = 0
 level = levels[current_level]
 cells_to_be_collected = level.cells_to_be_collected
 keywords = level.keywords
-Question_type = level.Question_type
+Question_type = random.choice(level.Question_types)
 reactor_integrity = level.reactor_integrity
 
 in_play_integrity = reactor_integrity
@@ -47,7 +47,7 @@ def next_level():
     else:
         level = levels[current_level]
         keywords = level.keywords
-        Question_type = level.Question_type
+        Question_type = random.choice(level.Question_types)
         cells_to_be_collected = level.cells_to_be_collected
         reactor_integrity = level.reactor_integrity
         question_count = 0
@@ -100,7 +100,9 @@ while playing == True:
         position = user_answer                                                      #type: ignore
 
     print(f"Reactor Integrity is at {in_play_integrity}/{reactor_integrity}")
-    print(f"Cells collected: {cells_collected}/{cells_to_be_collected}")   
+    print(f"Cells collected: {cells_collected}/{cells_to_be_collected}")  
+
+    Question_type = random.choice(level.Question_types) 
 
     if Question_type == "Regular":
         qf.get_question("Regular", position, keyword, movement_int)

@@ -1,4 +1,4 @@
-section_title = " "
+section_title = "Sector Alpha (Stabilization)"
 
 story_text = """Entry 3:
 
@@ -8,8 +8,8 @@ I was wrong.
 
 The displacement itself appears to be growing."""
 
-Question_type = "Regular"
+Question_types = ["Regular"]
 
 keywords = ["Boost","Amplify"]
 cells_to_be_collected = 10
-reactor_integrity = 4
+reactor_integrity = 7

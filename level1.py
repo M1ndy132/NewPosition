@@ -1,4 +1,4 @@
-section_title = ""
+section_title = "Sector Alpha (Stabilization)"
 
 story_text = """\nDr. Infinity has disappeared.
 Without him, the reactor has become unstable.
@@ -10,8 +10,8 @@ Maybe it will help you along the way.
 
 \nEntry 1: The energy cells powers are increasing move farther and farther away."""
 
-Question_type = "Regular"
+Question_types = ["Regular"]
 
 keywords = ["Boost"]
 cells_to_be_collected = 3
-reactor_integrity = 3
+reactor_integrity = 5

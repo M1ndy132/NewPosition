@@ -1,9 +1,18 @@
-section_title = " "
+section_title = "Sector Beta (Escalation)"
 
-story_text = " "
+story_text = """Entry 9:
 
-Question_type = " "
+I can no longer classify the cells into distinct groups.
+
+Some accelerate.
+Some reverse.
+Some magnify their displacement.
+Others diminish it.
+
+Each cell must now be evaluated on its own."""
+
+Question_types = ["Regular"]
 
 keywords = ["Boost", "Drain", "Amplify", "Dissipate"]
 cells_to_be_collected = 20
-reactor_integrity = 7
+reactor_integrity = 9

@@ -1,9 +1,9 @@
-section_title = " "
+section_title = "Sector Beta (Escalation)"
 
 story_text = " "
 
-Question_type = "Regular"
+Question_types = ["Regular"]
 
 keywords = ["Boost", "Drain", "Dissipate"]
 cells_to_be_collected = 15
-reactor_integrity = 5
+reactor_integrity = 8

@@ -1,9 +1,9 @@
-section_title = " "
+section_title = "Sector Gamma (Reversal)"
 
 story_text = " "
 
-Question_type = "Unknown"
+Question_types = ["Unknown"]
 
 keywords = ["Boost", "Dissipate"]
 cells_to_be_collected = 15
-reactor_integrity = 9
+reactor_integrity = 11
