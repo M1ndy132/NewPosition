@@ -1,5 +1,5 @@
 import random
-import level1, level2, level3, level4, level5, level6, level7, level8, level9, level10, level11, level12, level13, level14, level15, level16, level17, level18, level19, level20
+import levels.level1 as level1, levels.level2 as level2, levels.level3 as level3, levels.level4 as level4, levels.level5 as level5, levels.level6 as level6, levels.level7 as level7, levels.level8 as level8, levels.level9 as level9, levels.level10 as level10, levels.level11 as level11, levels.level12 as level12, levels.level13 as level13, levels.level14 as level14, levels.level15 as level15, levels.level16 as level16, levels.level17 as level17, levels.level18 as level18, levels.level19 as level19, levels.level20 as level20
 import questionfile as qf
 
 levels = [level1, level2, level3, level4, level5, level6, level7, level8, level9, level10,
@@ -17,7 +17,6 @@ cells_collected = 0
 level = levels[current_level]
 cells_to_be_collected = level.cells_to_be_collected
 keywords = level.keywords
-Question_type = random.choice(level.Question_types)
 reactor_integrity = level.reactor_integrity
 
 in_play_integrity = reactor_integrity
@@ -47,7 +46,6 @@ def next_level():
     else:
         level = levels[current_level]
         keywords = level.keywords
-        Question_type = random.choice(level.Question_types)
         cells_to_be_collected = level.cells_to_be_collected
         reactor_integrity = level.reactor_integrity
         question_count = 0
@@ -90,19 +88,18 @@ while playing == True:
         movement_int = random.choice(movement_int_limited_range)
     else:
         movement_int = random.randint(1, 10)
-    
+
+    Question_type = random.choice(level.Question_types)     
 
     if question_count < 1 and Question_type == "Regular":
         position = random.randint(1, 10)
     elif question_count < 1 and Question_type == "Unknown":
         position = random.randint(30, 60)
     else:
-        position = user_answer                                                      #type: ignore
+        position = new_position                                                      #type: ignore
 
     print(f"Reactor Integrity is at {in_play_integrity}/{reactor_integrity}")
     print(f"Cells collected: {cells_collected}/{cells_to_be_collected}")  
-
-    Question_type = random.choice(level.Question_types) 
 
     if Question_type == "Regular":
         qf.get_question("Regular", position, keyword, movement_int)
@@ -129,10 +126,10 @@ while playing == True:
             correct_answer = position * movement_int
     
 
-    user_answer = float(input("Position? "))
+    new_position = float(input("Position? "))
 
 
-    if user_answer == correct_answer:   #type: ignore
+    if new_position == correct_answer:   #type: ignore
         print("\nYou got it!")
         question_count += 1
         cells_collected += 1
