@@ -23,7 +23,7 @@ reactor_integrity = level.reactor_integrity
 in_play_integrity = reactor_integrity
 
 def confirm():
-    global playing, loop_count
+    global playing
     if not next_level():
         playing = False
     else:
@@ -37,7 +37,7 @@ def confirm():
             print(level.story_text)
 
 def next_level():
-    global current_level, playing, keywords, loop_count, cells_collected, cells_to_be_collected
+    global current_level, playing, keywords, question_count, cells_collected, cells_to_be_collected
     global level, reactor_integrity, amplify_count, dissipate_count, Question_type, in_play_integrity
 
     current_level += 1
@@ -50,7 +50,7 @@ def next_level():
         Question_type = level.Question_type
         cells_to_be_collected = level.cells_to_be_collected
         reactor_integrity = level.reactor_integrity
-        loop_count = 0
+        question_count = 0
         cells_collected = 0
         amplify_count = 0
         dissipate_count = 0
