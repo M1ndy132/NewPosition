@@ -8,5 +8,7 @@ I was wrong.
 
 The displacement itself appears to be growing."""
 
+Question_type = "Regular"
+
 keywords = ["Boost","Amplify"]
 cells_to_be_collected = 10

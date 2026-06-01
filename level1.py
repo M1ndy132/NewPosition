@@ -10,5 +10,7 @@ Maybe it will help you along the way.
 
 \nEntry 1: The energy cells powers are increasing move farther and farther away."""
 
+Question_type = "Regular"
+
 keywords = ["Boost"]
 cells_to_be_collected = 3

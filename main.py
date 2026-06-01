@@ -1,8 +1,11 @@
 import random
 import level1, level2, level3, level4
+import questionfile as qf
 
 levels = [level1, level2, level3, level4]
 current_level = 0
+
+Question_types = ["Regular", "Unknown"]
 
 playing = False
 loop_count = 0
@@ -15,6 +18,7 @@ cells_collected = 0
 level = levels[current_level]
 cells_to_be_collected = level.cells_to_be_collected
 keywords = level.keywords
+Question_type = level.Question_type
 
 reactor_integrity = 3
 
@@ -33,7 +37,9 @@ def confirm():
             print(level.story_text)
 
 def next_level():
-    global current_level, playing, keywords, loop_count, cells_collected, cells_to_be_collected, level, reactor_integrity, amplify_count, dissipate_count
+    global current_level, playing, keywords, loop_count, cells_collected, cells_to_be_collected
+    global level, reactor_integrity, amplify_count, dissipate_count, Question_type
+
     current_level += 1
     if current_level >= len(levels):
         print("\nYou've stabalized all the sectors!")
@@ -41,6 +47,7 @@ def next_level():
     else:
         level = levels[current_level]
         keywords = level.keywords
+        Question_type = level.Question_type
         cells_to_be_collected = level.cells_to_be_collected
         loop_count = 0
         cells_collected = 0
@@ -90,22 +97,35 @@ while playing == True:
         position = user_answer                                                      #type: ignore
 
     print(f"Reactor Integrity is at {reactor_integrity}/3")
-    print(f"Cells collected: {cells_collected}/{cells_to_be_collected}")    
+    print(f"Cells collected: {cells_collected}/{cells_to_be_collected}")   
+
+    if Question_type == "Regular":
+        qf.get_question("Regular", position, keyword, movement_int)
+
+        if keyword == "Boost":
+            correct_answer = position + movement_int
+        elif keyword == "Drain":
+            correct_answer = position - movement_int
+        elif keyword == "Amplify":
+            correct_answer = position * movement_int
+        elif keyword == "Dissipate":
+            correct_answer = round(position/movement_int, 1)
     
-    print(f"\nYou are at position {position}")
-    print(f"The energy cell was hit with a {keyword} {movement_int}")
-    print("\nWhere do you need to be to collect it?")
+    elif Question_type == "Unknown":
+        qf.get_question("Unknown", position, keyword, movement_int)
+
+        if keyword == "Boost":
+            correct_answer = position - movement_int
+        elif keyword == "Drain":
+            correct_answer = position + movement_int
+        elif keyword == "Amplify":
+            correct_answer = round(position/movement_int, 1)
+        elif keyword == "Dissipate":
+            correct_answer = position * movement_int
+    
 
     user_answer = float(input("Position? "))
 
-    if keyword == "Boost":
-        correct_answer = position + movement_int
-    elif keyword == "Drain":
-        correct_answer = position - movement_int
-    elif keyword == "Amplify":
-        correct_answer = position * movement_int
-    elif keyword == "Dissipate":
-        correct_answer = round(position/movement_int, 1)
 
     if user_answer == correct_answer:   #type: ignore
         print("\nYou got it!")
