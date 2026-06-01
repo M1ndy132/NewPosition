@@ -1,12 +1,13 @@
 import random
-import level1, level2, level3, level4, level5, level6, level7, level8, level9, level10
+import level1, level2, level3, level4, level5, level6, level7, level8, level9, level10, level11, level12, level13, level14, level15, level16, level17, level18, level19, level20
 import questionfile as qf
 
-levels = [level1, level2, level3, level4, level5, level6, level7, level8, level9, level10]
-current_level = 0
+levels = [level1, level2, level3, level4, level5, level6, level7, level8, level9, level10,
+          level11, level12, level13, level14, level15, level16, level17, level18, level19, level20]
+current_level = 10
 
 playing = False
-loop_count = 0
+question_count = 0
 
 amplify_count = 0
 dissipate_count = 0
@@ -91,8 +92,10 @@ while playing == True:
         movement_int = random.randint(1, 10)
     
 
-    if loop_count < 1:
+    if question_count < 1 and Question_type == "Regular":
         position = random.randint(1, 10)
+    elif question_count < 1 and Question_type == "Unknown":
+        position = random.randint(30, 60)
     else:
         position = user_answer                                                      #type: ignore
 
@@ -129,14 +132,14 @@ while playing == True:
 
     if user_answer == correct_answer:   #type: ignore
         print("\nYou got it!")
-        loop_count += 1
+        question_count += 1
         cells_collected += 1
         if cells_collected == cells_to_be_collected:
             print("\nYou've stabalized this sector of the reactor. A job well done.")
             confirm()
     else:
         print(f"\nYou missed it. The correct position was {correct_answer}") #type: ignore
-        loop_count += 1
+        question_count += 1
         in_play_integrity -= 1
         if in_play_integrity == 0:
             print("\nThe reactor has failed. It's over for us all.")
