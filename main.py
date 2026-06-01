@@ -1,11 +1,9 @@
 import random
-import level1, level2, level3, level4
+import level1, level2, level3, level4, level5, level6, level7, level8, level9, level10
 import questionfile as qf
 
-levels = [level1, level2, level3, level4]
+levels = [level1, level2, level3, level4, level5, level6, level7, level8, level9, level10]
 current_level = 0
-
-Question_types = ["Regular", "Unknown"]
 
 playing = False
 loop_count = 0
@@ -19,8 +17,9 @@ level = levels[current_level]
 cells_to_be_collected = level.cells_to_be_collected
 keywords = level.keywords
 Question_type = level.Question_type
+reactor_integrity = level.reactor_integrity
 
-reactor_integrity = 3
+in_play_integrity = reactor_integrity
 
 def confirm():
     global playing, loop_count
@@ -38,7 +37,7 @@ def confirm():
 
 def next_level():
     global current_level, playing, keywords, loop_count, cells_collected, cells_to_be_collected
-    global level, reactor_integrity, amplify_count, dissipate_count, Question_type
+    global level, reactor_integrity, amplify_count, dissipate_count, Question_type, in_play_integrity
 
     current_level += 1
     if current_level >= len(levels):
@@ -49,11 +48,12 @@ def next_level():
         keywords = level.keywords
         Question_type = level.Question_type
         cells_to_be_collected = level.cells_to_be_collected
+        reactor_integrity = level.reactor_integrity
         loop_count = 0
         cells_collected = 0
         amplify_count = 0
         dissipate_count = 0
-        reactor_integrity = 3
+        in_play_integrity = reactor_integrity
         return True
 
 
@@ -96,7 +96,7 @@ while playing == True:
     else:
         position = user_answer                                                      #type: ignore
 
-    print(f"Reactor Integrity is at {reactor_integrity}/3")
+    print(f"Reactor Integrity is at {in_play_integrity}/{reactor_integrity}")
     print(f"Cells collected: {cells_collected}/{cells_to_be_collected}")   
 
     if Question_type == "Regular":
@@ -137,8 +137,8 @@ while playing == True:
     else:
         print(f"\nYou missed it. The correct position was {correct_answer}") #type: ignore
         loop_count += 1
-        reactor_integrity -= 1
-        if reactor_integrity == 0:
+        in_play_integrity -= 1
+        if in_play_integrity == 0:
             print("\nThe reactor has failed. It's over for us all.")
             playing = False
     

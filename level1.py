@@ -14,3 +14,4 @@ Question_type = "Regular"
 
 keywords = ["Boost"]
 cells_to_be_collected = 3
+reactor_integrity = 3

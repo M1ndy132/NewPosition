@@ -6,3 +6,4 @@ Question_type = "Regular"
 
 keywords = ["Boost", "Drain"]
 cells_to_be_collected = 5
+reactor_integrity = 3
