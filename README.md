@@ -117,7 +117,7 @@ Something is changing how the system behaves.
 
 ---
 
-## 📌 Version
+## Version
 
 **v0.0.1 — First Stable Build**
 
@@ -128,7 +128,7 @@ Something is changing how the system behaves.
 
 ---
 
-## ⚙️ Notes
+## Notes
 
 This project is designed as a learning-driven puzzle game blending:
 
@@ -138,7 +138,7 @@ This project is designed as a learning-driven puzzle game blending:
 
 ---
 
-## ⭐ Credit
+## Credit
 
 Built as an experimental learning project exploring:
 
