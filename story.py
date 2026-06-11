@@ -20,7 +20,7 @@ def save_progress():
     user_confirm = input("Would you like to make a marker?")
 
     if user_confirm.startswith('y'):
-        name = input("Name the marker: ").strip().lower()
+        name = input("Name the marker: ").strip().title()
         level = current_level
 
         new_save = {
@@ -144,11 +144,18 @@ def run_story(save_name=None):
     while playing == True:
         available_keywords = keywords.copy()
 
-        if amplify_count >= 3 and "Amplify" in available_keywords:
-            available_keywords.remove("Amplify")
+        if current_level_data.cells_to_be_collected <= 15:
+            if amplify_count >= 3 and "Amplify" in available_keywords:
+                available_keywords.remove("Amplify")
 
-        if dissipate_count >= 3 and "Dissipate" in available_keywords:
-            available_keywords.remove("Dissipate")
+            if dissipate_count >= 3 and "Dissipate" in available_keywords:
+                available_keywords.remove("Dissipate")
+        else:
+            if amplify_count >= 6 and "Amplify" in available_keywords:
+                available_keywords.remove("Amplify")
+
+            if dissipate_count >= 6 and "Dissipate" in available_keywords:
+                available_keywords.remove("Dissipate")
 
         keyword = random.choice(available_keywords)
 
