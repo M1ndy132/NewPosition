@@ -13,7 +13,7 @@ while option := input("Select a mode. ").strip().lower():
                     dict1 = list_of_saves[n]
                     for item in list_of_saves[n]:
                         print(f"{item}, Level: {list_of_saves[n][item]["level"]} ")
-                save = input("Would you like to teleport to saved marker? Enter name or 'n' ").strip().lower()
+                save = input("Would you like to teleport to saved marker? Enter name or 'n' ").strip().title()
                 if save == "n":
                     run_story()
                 else:
