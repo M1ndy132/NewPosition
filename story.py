@@ -17,7 +17,7 @@ def load_saves():
 
 def save_progress():
     print("Markers tell us where we left off.")
-    user_confirm = input("Would you like to make a marker?")
+    user_confirm = input("Would you like to make a marker? (y/n)")
 
     if user_confirm.startswith('y'):
         name = input("Name the marker: ").strip().title()
@@ -108,7 +108,7 @@ def next_level():
         in_play_integrity = reactor_integrity
         return True
 
-def run_story(save_name=None):
+def run_story(win, save_name=None):
     global playing, current_level, current_level_data
     global cells_to_be_collected, keywords, reactor_integrity
     global amplify_count, dissipate_count, question_count, in_play_integrity, cells_collected
