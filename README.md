@@ -66,7 +66,6 @@ Each level mixes these dynamically.
 NewPosition/
 │
 ├── main.py
-|-- story.py
 ├── questionfile.py
 │
 ├── levels/
