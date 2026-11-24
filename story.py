@@ -108,7 +108,29 @@ def next_level():
         in_play_integrity = reactor_integrity
         return True
 
-def run_story(win, save_name=None):
+def reg_answers(position, movement_int, keyword):
+    keyword_master_list = [{"Key": "Boost", "Calculation": (position + movement_int)}, 
+                           {"Key": "Drain", "Calculation": (position - movement_int)}, 
+                           {"Key": "Amplify", "Calculation": (position * movement_int)}, 
+                           {"Key": "Dissipate", "Calculation": round(position/movement_int, 1)}]
+
+    for key in keyword_master_list:
+            if keyword == key["Key"]:
+                correct_answer = key["Calculation"]
+
+    wrong_keywords = [key for key in keyword_master_list if key["Key"] != keyword and key["Calculation"] != correct_answer] 
+
+    
+    alt_answer_1_keyword, alt_answer_2_keyword = random.sample(wrong_keywords, 2) 
+    alt_answer_1 = alt_answer_1_keyword["Calculation"]
+    alt_answer_2 = alt_answer_2_keyword["Calculation"]
+
+
+    return correct_answer, alt_answer_1, alt_answer_2
+
+    
+
+def run_story(save_name=None):
     global playing, current_level, current_level_data
     global cells_to_be_collected, keywords, reactor_integrity
     global amplify_count, dissipate_count, question_count, in_play_integrity, cells_collected
@@ -183,19 +205,21 @@ def run_story(win, save_name=None):
         print(f"Cells collected: {cells_collected}/{cells_to_be_collected}")  
 
         if Question_type == "Regular":
-            qf.get_question("Regular", position, keyword, movement_int)
+            print(qf.get_question("Regular", position, keyword, movement_int))
 
-            if keyword == "Boost":
+            correct_answer, alt_answer_1, alt_answer_2 = reg_answers(position, movement_int, keyword)
+            print(correct_answer, alt_answer_1, alt_answer_2)
+            """if keyword == "Boost":
                 correct_answer = position + movement_int
             elif keyword == "Drain":
                 correct_answer = position - movement_int
             elif keyword == "Amplify":
                 correct_answer = position * movement_int
             elif keyword == "Dissipate":
-                correct_answer = round(position/movement_int, 1)
+                correct_answer = round(position/movement_int, 1)"""
         
         elif Question_type == "Unknown":
-            qf.get_question("Unknown", position, keyword, movement_int)
+            print(qf.get_question("Unknown", position, keyword, movement_int))
 
             if keyword == "Boost":
                 correct_answer = position - movement_int

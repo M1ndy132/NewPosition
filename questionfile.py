@@ -6,10 +6,10 @@ Questions = {
 def get_question(type: str, position: float, keyword: str, movement_int: int):
     template = Questions.get(type)
     if template:
-        print(template.format(
+        return template.format(
             position=position,
             keyword=keyword,
             movement_int=movement_int
-        ))
+        )
     else:
-        print(f"Unknown question type: {type}")
+        return f"Unknown question type: {type}"

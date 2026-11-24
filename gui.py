@@ -1,5 +1,5 @@
 from tkinter import *
-from main import start
+
 
 win = Tk()
 win.config(width=500, height=400)
@@ -21,7 +21,7 @@ def start_game():
     game_win.title("Reactor")
 
 
-    start(game_win)
+
     
 
 menubar = Menu(win)
