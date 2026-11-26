@@ -8,6 +8,7 @@ levels = [level1, level2, level3, level4, level5, level6, level7, level8, level9
           level11, level12, level13, level14, level15, level16, level17, level18, level19, level20]
 
 SAVE_FILE = "saves.json"
+save_name = ""
 
 def load_saves():
     try:
@@ -31,28 +32,39 @@ def save_progress(win):
     user_confirm_yes_btn.grid(row=0, column=0)
     user_confirm_no_btn.grid(row=0, column=1)
 
+def get_text(win, entry):
+    save_name = entry.get()
+    
+    name = save_name
+    level = current_level
+
+    new_save = {
+        name: {
+            "level": level + 1
+        } 
+    }
+
+    list_of_saves.append(new_save)
+
+    with open(SAVE_FILE, "w") as f:
+        json.dump(list_of_saves, f, indent=2)
+
+
+
 def user_save_confirm(win, label, confirmation):
+    global save_name
     if confirmation == "Yes":
         save_name_label = Label(win, text="Name the marker: ")
-        save_name_entry = Entry(win)
+        entry_frame = Frame(win)
+        save_name_entry = Entry(entry_frame)
+        entry_btn = Button(entry_frame, text="->", command=lambda: get_text(win, save_name_entry))
 
         save_name_label.pack()
-        save_name_entry.pack()
-        name = save_name_entry.get()
-        level = current_level
+        entry_frame.pack()
+        save_name_entry.grid(row=0, column=0)
+        entry_btn.grid(row=0, column=1)
 
-        new_save = {
-            name: {
-                "level": level
-            } 
-        }
-
-        list_of_saves.append(new_save)
-
-        with open(SAVE_FILE, "w") as f:
-            json.dump(list_of_saves, f, indent=2)
-    else:
-        label.config(text="The time machine's seeing some use.")
+        
 
 def load_progress(save_name=None):
     try:
@@ -97,14 +109,16 @@ game_state = {
 list_of_saves = load_saves()
 
 def next_level_confirm(win):
-    global playing
-    if not next_level(win):
-        ...
-        # Exit
-    else:
-        confirmation_lbl = Label(win, text="Would you like to proceed to the next sector?")
-        confirm_yes_btn = Button(win, text="Yes", command=lambda: begin_next_level_confirm(win, confirmation_lbl, "Yes"))
-        confirm_no_btn = Button(win, text="No", command=lambda: begin_next_level_confirm(win, confirmation_lbl, "No"))
+    confirmation_lbl = Label(win, text="Would you like to proceed to the next sector?")
+    button_frame = Frame(win)
+    confirm_yes_btn = Button(button_frame, text="Yes", command=lambda: begin_next_level_confirm(win, confirmation_lbl, "Yes"))
+    confirm_no_btn = Button(button_frame, text="No", command=lambda: begin_next_level_confirm(win, confirmation_lbl, "No"))
+
+    confirmation_lbl.pack()
+    button_frame.pack()
+    confirm_yes_btn.grid(row=0, column=0)
+    confirm_no_btn.grid(row=0, column=1)
+
 
 
 def begin_next_level_confirm(win, label, confirmation):
@@ -266,8 +280,9 @@ def check_answer(win, answer, question_type, position, keyword, movement_int):
         
         if cells_collected == cells_to_be_collected:
             message_lbl_2.config(text="You've stabalized this sector of the reactor. A job well done.")
-            win.after(1200, lambda: next_level_confirm(win))
             message_lbl_2.pack()
+            win.after(1200, lambda: next_level_confirm(win))
+            
         else:
             win.after(1200, lambda: next_question(win))
         
